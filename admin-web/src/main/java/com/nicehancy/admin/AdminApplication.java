@@ -16,7 +16,7 @@ public class AdminApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(AdminApplication.class, args);
-		log.info("Admin服务已启动...");
+		log.info("admin服务已启动...");
 	}
 
 }

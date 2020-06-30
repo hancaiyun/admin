@@ -23,10 +23,10 @@
         </div>
         <ul class="layui-nav right" lay-filter="">
           <li class="layui-nav-item">
-            <a href="javascript:;">admin</a>
-            <dl class="layui-nav-child"> <!-- 二级菜单 -->
+            <a th:id="userNo" href="javascript:;"></a>
+            <dl class="layui-nav-child">
               <dd><a onclick="x_admin_show('个人信息','http://www.baidu.com')">个人信息</a></dd>
-              <dd><a th:href="login">登出</a></dd>
+              <dd><a th:href="login">退出登陆</a></dd>
             </dl>
           </li>
         </ul>
@@ -155,6 +155,21 @@
     <!-- 底部开始 -->
     <div class="footer">
         <div class="copyright"><p>© 2020 <a href="" target="_blank">nicehancy.com All Rights Reserved</a></p></div>
-    </div> 
+    </div>
+
+    <script>
+        window.onload = function () {
+            const maskName = mobilePhoneMask(window.localStorage["adminLoginNo"]);
+            document.getElementById("userNo").innerHTML = "<cite>" + maskName + "</cite>";
+        }
+
+        //手机号掩码处理
+        function mobilePhoneMask(input) {
+            let output = input;
+            if (input == null || input === "")return output;
+            output = input.substr(0, 3) + "****" + input.substr(input.length - 4);
+            return output;
+        }
+    </script>
 </body>
 </html>

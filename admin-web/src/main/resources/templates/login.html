@@ -12,13 +12,13 @@
 <body class="login-bg">
     
     <div class="login">
-        <div class="message">Admin-管理登录</div>
+        <div class="message">admin-管理登录</div>
         <div id="darkbannerwrap"></div>
         
         <form method="post" class="layui-form" >
-            <input name="username" placeholder="用户名"  type="text" lay-verify="required" class="layui-input" >
+            <input name="username" lay-verify="required" placeholder="用户名"  type="text" class="layui-input" >
             <hr class="hr15">
-            <input name="password" lay-verify="required" placeholder="密码"  type="password" class="layui-input">
+            <input name="password" lay-verify="required" placeholder="密码"   type="password" oninput ="storage()" class="layui-input">
             <hr class="hr15">
             <input value="登录" lay-submit lay-filter="login" style="width:100%;" type="submit">
             <!-- ${session?.SPRING_SECURITY_LAST_EXCEPTION?.message} security自带的错误提示信息 -->
@@ -30,5 +30,12 @@
     <script th:src="@{/frame/js/jquery-3.4.1.min.js}"></script>
     <script th:src="@{/frame/layui/layui.js}"></script>
     <script th:src="@{/frame/js/xadmin.js}"></script>
+    <script>
+        //本地缓存用户信息， 输入密码后，触发缓存
+        function storage() {
+            const storage = window.localStorage;
+            storage["adminLoginNo"] = document.getElementsByName("username")[0].value;
+        }
+    </script>
 </body>
 </html>
