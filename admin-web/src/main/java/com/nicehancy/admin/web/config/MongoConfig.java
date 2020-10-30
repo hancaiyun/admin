@@ -34,7 +34,7 @@ public class MongoConfig {
         } catch (NoSuchBeanDefinitionException ignore) {
         }
 
-        // Don't save _class to mongo  去除默认的_class字段
+        //Don't save _class to mongo  去除默认的_class字段
         mappingConverter.setTypeMapper(new DefaultMongoTypeMapper(null));
 
         return mappingConverter;

@@ -22,7 +22,9 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    //注册UserDetailsService的bean
+    /**
+     * 注册UserDetailsService的bean
+     */
     @Bean
     UserDetailsService customUserService(){
         return new CustomUserServiceImpl();
@@ -35,8 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.headers().frameOptions().disable();
 
         http.cors().and().csrf().disable();
-        http
-             //使用form表单post方式进行登录
+        http //使用form表单post方式进行登录
              .formLogin()
              //登录页面为自定义的登录页面
              .loginPage("/login")
@@ -70,12 +71,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth.userDetailsService(customUserService()).passwordEncoder(new BCryptPasswordEncoder());
     }
-
-//    @Bean
-//    public ReloadableResourceBundleMessageSource messageSource(){
-//        ReloadableResourceBundleMessageSource reloadableResourceBundleMessageSource =
-//                new ReloadableResourceBundleMessageSource();
-//        reloadableResourceBundleMessageSource.setBasename("classpath:application");
-//        return reloadableResourceBundleMessageSource;
-//    }
 }
