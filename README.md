@@ -1,2 +1,2 @@
 # admin
-# a project for mix
+# project for mix
